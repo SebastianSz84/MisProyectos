@@ -51,13 +51,18 @@ public class PedirProveedor extends JFrame {
 			btnAceptar.setBounds(70, 100, 80, 23);
 			btnAceptar.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent evt) {
+					ListadoProductos vista = new ListadoProductos(null);
+					vista.setVisible(true);
+					dispose();
+
 					Vector<ProductoView> productos = Sistema.getInstancia()
 							.mostrarProd(txtCUIT.getText());
 
 					if (productos != null) {
 						if (evento.getActionCommand()
 								.equals("Listar Productos")) {
-							;
+							vista = new ListadoProductos(null);
+							vista.setVisible(true);
 						} else if (evento.getActionCommand().equals(
 								"Cantidad de Productos")) {
 							JOptionPane.showMessageDialog(

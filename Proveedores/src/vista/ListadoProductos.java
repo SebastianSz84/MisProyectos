@@ -1,5 +1,7 @@
 package vista;
 
+import java.awt.BorderLayout;
+
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -33,8 +35,9 @@ public class ListadoProductos extends JFrame {
 	private void initGUI() {
 		{
 			this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			getContentPane().setLayout(null);
 			this.setSize(440, 240);
+			BorderLayout thisLayout = new BorderLayout();
+			getContentPane().setLayout(thisLayout);
 			this.setLocationRelativeTo(null);
 			{
 				DefaultTableModel tblProductosModel = new DefaultTableModel();
@@ -42,17 +45,25 @@ public class ListadoProductos extends JFrame {
 				tblProductosModel.addColumn("Código");
 				tblProductosModel.addColumn("Descripción");
 
-				for (int i = 0; i < productos.size(); i++) {
+				// for (int i = 0; i < productos.size(); i++) {
+				// Object[] linea = new Object[2];
+				//
+				// linea[1] = String.valueOf(productos.elementAt(i)
+				// .getCodigo());
+				// linea[2] = productos.elementAt(i).getDescripcion();
+				// tblProductosModel.addRow(linea);
+				// }
+
+				for (int i = 0; i < 3; i++) {
 					Object[] linea = new Object[2];
 
-					linea[1] = String.valueOf(productos.elementAt(i)
-							.getCodigo());
-					linea[2] = productos.elementAt(i).getDescripcion();
+					linea[0] = "Línea " + Integer.valueOf(i) + ", Columna 1";
+					linea[1] = "Línea " + Integer.valueOf(i) + ", Columna 2";
 					tblProductosModel.addRow(linea);
 				}
 
 				tblProductos = new JTable();
-				getContentPane().add(tblProductos);
+				getContentPane().add(tblProductos, BorderLayout.CENTER);
 				tblProductos.setBounds(0, 0, 424, 202);
 				tblProductos.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 				tblProductos.setModel(tblProductosModel);
