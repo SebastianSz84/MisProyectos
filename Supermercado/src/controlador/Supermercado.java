@@ -27,4 +27,16 @@ public class Supermercado {
 		}
 		return instancia;
 	}
+
+	public Vector<Factura> getFacturas() {
+		return facturas;
+	}
+
+	public void setFacturas(Vector<Factura> facturas) {
+		this.facturas = facturas;
+	}
+
+	public static void setInstancia(Supermercado instancia) {
+		Supermercado.instancia = instancia;
+	}
 }
