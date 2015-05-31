@@ -1,7 +1,6 @@
 package vista;
 
 import java.awt.BorderLayout;
-
 import java.util.Vector;
 
 import javax.swing.JFrame;
@@ -23,6 +22,7 @@ import modelo.ProductoView;
  */
 @SuppressWarnings("serial")
 public class ListadoProductos extends JFrame {
+	@SuppressWarnings("unused")
 	private Vector<ProductoView> productos;
 	private JTable tblProductos;
 

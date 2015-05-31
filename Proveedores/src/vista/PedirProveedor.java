@@ -55,29 +55,29 @@ public class PedirProveedor extends JFrame {
 					vista.setVisible(true);
 					dispose();
 
-					Vector<ProductoView> productos = Sistema.getInstancia()
-							.mostrarProd(txtCUIT.getText());
-
-					if (productos != null) {
-						if (evento.getActionCommand()
-								.equals("Listar Productos")) {
-							vista = new ListadoProductos(null);
-							vista.setVisible(true);
-						} else if (evento.getActionCommand().equals(
-								"Cantidad de Productos")) {
-							JOptionPane.showMessageDialog(
-									null,
-									"El proveedor tiene "
-											+ String.valueOf(productos.size())
-											+ " productos.", "Información",
-									JOptionPane.INFORMATION_MESSAGE);
-						}
-					} else {
-						JOptionPane.showMessageDialog(null,
-								"No se ha encontrado un proveedor con CUIT: "
-										+ txtCUIT.getText(), "Error",
-								JOptionPane.ERROR_MESSAGE);
-					}
+					// Vector<ProductoView> productos = Sistema.getInstancia()
+					// .mostrarProd(txtCUIT.getText());
+					//
+					// if (productos != null) {
+					// if (evento.getActionCommand()
+					// .equals("Listar Productos")) {
+					// vista = new ListadoProductos(null);
+					// vista.setVisible(true);
+					// } else if (evento.getActionCommand().equals(
+					// "Cantidad de Productos")) {
+					// JOptionPane.showMessageDialog(
+					// null,
+					// "El proveedor tiene "
+					// + String.valueOf(productos.size())
+					// + " productos.", "Información",
+					// JOptionPane.INFORMATION_MESSAGE);
+					// }
+					// } else {
+					// JOptionPane.showMessageDialog(null,
+					// "No se ha encontrado un proveedor con CUIT: "
+					// + txtCUIT.getText(), "Error",
+					// JOptionPane.ERROR_MESSAGE);
+					// }
 				}
 			});
 		}
