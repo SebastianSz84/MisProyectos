@@ -31,7 +31,7 @@ public class MateriaVO
 	
 	public String toString()
 	{
-		return this.numero + " " + this.nombre;
+		return this.numero + " - " + this.nombre;
 	}
 	
 	public boolean equals(Object o)

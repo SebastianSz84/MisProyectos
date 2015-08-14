@@ -55,7 +55,7 @@ public class ProfesorVO
 	
 	public String toString()
 	{
-		return "Curso " + Integer.toString(this.numeroLegajo);
+		return Integer.toString(this.numeroLegajo) + " " + this.nombre;
 	}
 	
 	public boolean equals(Object o)

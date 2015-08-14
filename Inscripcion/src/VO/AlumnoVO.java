@@ -42,7 +42,7 @@ public class AlumnoVO
 	
 	public String toString()
 	{
-		return this.nombre;
+		return Integer.toString(this.legajo) + this.nombre;
 	}
 	
 	public boolean equals(Object o)

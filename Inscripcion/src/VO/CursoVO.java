@@ -66,7 +66,12 @@ public class CursoVO
 	
 	public String toString()
 	{
-		return "Curso " + Integer.toString(this.numeroCurso);
+		String s = "Curso " + Integer.toString(this.numeroCurso);
+		if (this.materia != null)
+		{
+			s = s + " - " + this.materia.toString();
+		}
+		return s;
 	}
 	
 	public boolean equals(Object o)
