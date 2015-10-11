@@ -24,7 +24,7 @@ public class HibernateUtil {
 			config.addAnnotatedClass(Factura.class);
 			config.addAnnotatedClass(Plato.class);
 			config.addAnnotatedClass(Rubro.class);
-			config.configure("hbt\\hibernate.properties");
+			// config.configure("hbt\\hibernate.properties");
 
 			sessionFactory = config.buildSessionFactory();
 		} catch (Throwable ex) {
@@ -38,8 +38,7 @@ public class HibernateUtil {
 	}
 
 	public static <T> T getEntity(Class<T> cls, int id) {
-		Transaction tx = getSessionFactory().getCurrentSession()
-				.beginTransaction();
+		Transaction tx = getSessionFactory().getCurrentSession().beginTransaction();
 		try {
 			@SuppressWarnings("unchecked")
 			T entity = (T) getSessionFactory().getCurrentSession().get(cls, id);
@@ -52,12 +51,10 @@ public class HibernateUtil {
 	}
 
 	public static <T> List<T> getAll(Class<T> cls, String tabla) {
-		Transaction tx = getSessionFactory().getCurrentSession()
-				.beginTransaction();
+		Transaction tx = getSessionFactory().getCurrentSession().beginTransaction();
 		try {
 			@SuppressWarnings("unchecked")
-			List<T> list = getSessionFactory().getCurrentSession()
-					.createQuery("from " + tabla).list();
+			List<T> list = getSessionFactory().getCurrentSession().createQuery("from " + tabla).list();
 			return list;
 		} catch (Exception ex) {
 			tx.rollback();
