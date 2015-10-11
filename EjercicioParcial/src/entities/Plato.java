@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class Plato {
 	@Id
 	private int idPlato;
-	private String description;
+	private String descripcion;
 	private float precio;
 	@ManyToOne
 	@JoinColumn(name = "IdRubro")
@@ -25,12 +25,12 @@ public class Plato {
 		this.idPlato = idPlato;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getDescripcion() {
+		return descripcion;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public float getPrecio() {

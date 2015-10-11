@@ -13,6 +13,6 @@ public class MozoDAO extends HibernateUtil {
 	}
 
 	public static List<Mozo> getList() {
-		return getAll(Mozo.class, "Mozos");
+		return getAll(Mozo.class);
 	}
 }

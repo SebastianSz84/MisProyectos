@@ -12,6 +12,6 @@ public class FacturaDAO extends HibernateUtil {
 	}
 
 	public static List<Factura> getList() {
-		return getAll(Factura.class, "Facturas");
+		return getAll(Factura.class);
 	}
 }

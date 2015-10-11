@@ -73,4 +73,13 @@ public class Factura {
 	public void setTotal(float total) {
 		this.total = total;
 	}
+
+	public boolean tenesPlato(Plato p) {
+		for (Plato pl : this.platos) {
+			if (pl.getIdPlato() == p.getIdPlato()) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
