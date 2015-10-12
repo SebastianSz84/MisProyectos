@@ -19,14 +19,29 @@ public class PlatoDAO extends HibernateUtil {
 		return getAll(Plato.class);
 	}
 
-	public static List<Plato> getByRubro(Rubro postre) {
+	public static List<Plato> getByRubro(Rubro r) {
 		Transaction tx = getSessionFactory().getCurrentSession().beginTransaction();
 		try {
 			@SuppressWarnings("unchecked")
-			List<Plato> list = getSessionFactory().getCurrentSession().createQuery("").list();
+			List<Plato> list = getSessionFactory().getCurrentSession().createQuery("from Plato where idRubro = (:idRubro)").setParameter("idRubro", r.getIdRubro()).list();
 			tx.commit();
 			return list;
 		} catch (Exception ex) {
+			ex.printStackTrace();
+			tx.rollback();
+		}
+		return null;
+	}
+
+	public static List<Object[]> getCantXRubro() {
+		Transaction tx = getSessionFactory().getCurrentSession().beginTransaction();
+		try {
+			@SuppressWarnings("unchecked")
+			List<Object[]> list = getSessionFactory().getCurrentSession().createQuery("SELECT r.descripcion,count(p.idPlato) FROM Plato p JOIN p.rubro r GROUP BY r.descripcion").list();
+			tx.commit();
+			return list;
+		} catch (Exception ex) {
+			ex.printStackTrace();
 			tx.rollback();
 		}
 		return null;

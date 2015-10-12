@@ -1,16 +1,15 @@
 package entities;
 
-
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="Mozos")
+@Table(name = "Mozos")
 public class Mozo {
 	@Id
-	private int idMozo;
+	private Integer idMozo;
 	private String nombre;
 	private String apellido;
 	@Embedded

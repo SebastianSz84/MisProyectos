@@ -9,8 +9,8 @@ import javax.persistence.ManyToOne;
 public class Domicilio {
 
 	private String calle;
-	private int numero;
-	private int piso;
+	private Integer numero;
+	private Integer piso;
 	@Column(name = "departamento")
 	private String depto;
 	@ManyToOne

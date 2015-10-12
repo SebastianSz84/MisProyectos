@@ -13,22 +13,25 @@ import javax.persistence.Table;
 public class Localidad {
 
 	@Id
-	@Column(name="IdCodpos")
+	@Column(name = "IdCodpos")
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="IdCodpos")
-	private int codpos;
-	private String nombre;
+	@JoinColumn(name = "IdCodpos")
+	private Integer codpos;
+	private String localida;
 
-	public int getCodpos() {
+	public Integer getCodpos() {
 		return codpos;
 	}
-	public void setCodpos(int codpos) {
+
+	public void setCodpos(Integer codpos) {
 		this.codpos = codpos;
 	}
-	public String getNombre() {
-		return nombre;
+
+	public String getLocalida() {
+		return localida;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+
+	public void setLocalida(String localida) {
+		this.localida = localida;
 	}
 }

@@ -10,9 +10,9 @@ import javax.persistence.Table;
 @Table(name = "Platos")
 public class Plato {
 	@Id
-	private int idPlato;
+	private Integer idPlato;
 	private String descripcion;
-	private float precio;
+	private Float precio;
 	@ManyToOne
 	@JoinColumn(name = "IdRubro")
 	private Rubro rubro;

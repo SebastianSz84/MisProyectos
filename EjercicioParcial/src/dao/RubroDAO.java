@@ -22,10 +22,11 @@ public class RubroDAO extends HibernateUtil {
 		Transaction tx = getSessionFactory().getCurrentSession().beginTransaction();
 		try {
 			@SuppressWarnings("unchecked")
-			List<Rubro> list = getSessionFactory().getCurrentSession().createQuery("from Rubros where descripcion = '" + desc + "'").list();
+			List<Rubro> list = getSessionFactory().getCurrentSession().createQuery("from Rubro where descripcion = (:desc)").setParameter("desc", desc).list();
 			return list.get(0);
 		} catch (Exception ex) {
 			tx.rollback();
+			ex.printStackTrace();
 		}
 		return null;
 	}
