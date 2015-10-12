@@ -23,7 +23,7 @@ public class MozoDAO extends HibernateUtil {
 		Transaction tx = getSessionFactory().getCurrentSession().beginTransaction();
 		try {
 			@SuppressWarnings("unchecked")
-			List<Mozo> list = getSessionFactory().getCurrentSession().createQuery("from Mozo mozos where mozos.domicilio.localidad.localida LIKE (:loc)").setParameter("loc", l).list();
+			List<Mozo> list = getSessionFactory().getCurrentSession().createQuery("from Mozo where domicilio.localidad.localida LIKE (:loc)").setParameter("loc", l).list();
 			return list;
 		} catch (Exception ex) {
 			tx.rollback();

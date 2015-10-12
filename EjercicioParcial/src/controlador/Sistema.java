@@ -1,16 +1,13 @@
 package controlador;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import dao.FacturaDAO;
 import dao.MozoDAO;
 import dao.PlatoDAO;
-import dao.RubroDAO;
 import entities.Factura;
 import entities.Mozo;
 import entities.Plato;
-import entities.Rubro;
 
 public class Sistema {
 
@@ -72,28 +69,13 @@ public class Sistema {
 
 	private static void ejercicioTres() {
 		System.out.println("Ejercicio 3: Identificar al mozo que no facturó ningún postre");
-		Rubro postre = RubroDAO.getByDesc("Postres");
-		List<Plato> platos = PlatoDAO.getByRubro(postre);
-		List<Factura> facturas = FacturaDAO.getList();
-		List<Mozo> mozos = new ArrayList<>();
+		List<Integer> tuplas = FacturaDAO.getMozoSinPostre();
 
-		for (Factura f : facturas) {
-			boolean tienePostre = false;
-			for (Plato p : platos) {
-				if (f.tenesPlato(p)) {
-					tienePostre = true;
-				}
-			}
-			if (!tienePostre) {
-				if (!mozos.contains(f.getMozo())) {
-					mozos.add(f.getMozo());
-				}
-			}
-		}
-		if (mozos.isEmpty()) {
-			System.out.println("No hay mozos que no hayan facturado postres.");
+		if (tuplas.isEmpty()) {
+			System.out.println("No se ha encontrado un mozo que cumpla con el criterio.");
 		} else {
-			for (Mozo m : mozos) {
+			for (int i = 0; i < tuplas.size(); i++) {
+				Mozo m = MozoDAO.getMozo(Integer.parseInt(tuplas.get(i).toString()));
 				System.out.println(m.getApellido() + ", " + m.getNombre());
 			}
 		}
@@ -101,39 +83,25 @@ public class Sistema {
 
 	private static void ejercicioCuatro() {
 		System.out.println("Ejercicio 4: Indicar los platos de mayor precio que se facturaron y la factura correspondiente");
-		List<Factura> facturas = FacturaDAO.getList();
-		List<Plato> platos = new ArrayList<>();
-		for (Factura f : facturas) {
-			for (Plato p : f.getPlatos()) {
-				if (!platos.contains(p)) {
-					platos.add(p);
-				}
-			}
-		}
+		List<Object[]> platos = FacturaDAO.getPlatosFactMasCaros();
 
 		if (platos.size() == 0) {
 			System.out.println("No se ha encontrado el plato facturado más caro.");
 			return;
 		}
 
-		float precioMasCaro = 0;
+		int idPlato = -1;
+		Plato p = null;
 
-		for (Plato p : platos) {
-			if (precioMasCaro < p.getPrecio()) {
-				precioMasCaro = p.getPrecio();
-			}
-		}
-
-		for (Plato p : platos) {
-			if (p.getPrecio() == precioMasCaro) {
+		for (Object[] tupla : platos) {
+			if (idPlato == -1 || idPlato != Integer.parseInt(tupla[0].toString())) {
+				idPlato = Integer.parseInt(tupla[0].toString());
+				p = PlatoDAO.getPlato(Integer.parseInt(tupla[0].toString()));
 				System.out.println("Plato: " + p.getDescripcion() + ". Precio: " + p.getPrecio() + ". Números de Factura:");
-				for (Factura f : facturas) {
-					if (f.tenesPlato(p)) {
-						System.out.println(Integer.toString(f.getNroFactura()));
-					}
-				}
-				System.out.println();
 			}
+
+			Factura f = FacturaDAO.getFactura(Integer.parseInt(tupla[1].toString()));
+			System.out.println(Integer.toString(f.getNroFactura()));
 		}
 	}
 
@@ -163,7 +131,7 @@ public class Sistema {
 		List<Object[]> tuplas = FacturaDAO.getPlatosXMozo(m);
 
 		if (tuplas == null) {
-			System.out.println("No se han encontrado platos màs caros facturados por el mozo elegido.");
+			System.out.println("No se han encontrado platos más caros facturados por el mozo elegido.");
 			return;
 		}
 
