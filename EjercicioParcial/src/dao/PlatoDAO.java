@@ -33,10 +33,10 @@ public class PlatoDAO extends HibernateUtil {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	public static List<Object[]> getCantXRubro() {
 		Transaction tx = getSessionFactory().getCurrentSession().beginTransaction();
 		try {
-			@SuppressWarnings("unchecked")
 			List<Object[]> list = getSessionFactory().getCurrentSession().createQuery("SELECT r.descripcion,count(p.idPlato) FROM Plato p JOIN p.rubro r GROUP BY r.descripcion").list();
 			tx.commit();
 			return list;

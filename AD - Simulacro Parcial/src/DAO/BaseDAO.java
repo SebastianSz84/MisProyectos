@@ -1,9 +1,15 @@
 package DAO;
 
-import modelo.*;
+import modelo.Domicilio;
+import modelo.Factura;
+import modelo.Localidad;
+import modelo.Mozo;
+import modelo.Plato;
+import modelo.Rubro;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.cfg.Configuration;
+import org.hibernate.cfg.AnnotationConfiguration;
 
 public class BaseDAO {
 	
@@ -14,7 +20,7 @@ public class BaseDAO {
 		if (_session == null)
 		{
 			// Create session
-			Configuration cfg = new Configuration();
+			AnnotationConfiguration cfg = new AnnotationConfiguration();
 			cfg.addAnnotatedClass(Localidad.class);
 			cfg.addAnnotatedClass(Domicilio.class);
 			cfg.addAnnotatedClass(Mozo.class);
