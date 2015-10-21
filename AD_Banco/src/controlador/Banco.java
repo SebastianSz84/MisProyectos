@@ -17,7 +17,7 @@ public class Banco
 		List<Cuenta> cuentas = BancoDAO.getInstancia().getSaldos();
 		for (Cuenta c : cuentas)
 		{
-			System.out.println("Número: " + c.getNumero().toString() + ". Saldo: " + c.getSaldo());
+			System.out.println("Número: " + c.getNumero().toString() + ". Tipo: " + c.getClass().getSimpleName() + ". Saldo: " + c.getSaldo());
 		}
 	}
 }

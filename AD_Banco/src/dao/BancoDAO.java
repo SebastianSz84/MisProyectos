@@ -39,10 +39,11 @@ public class BancoDAO
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static List<Cuenta> getSaldos()
+	public List<Cuenta> getSaldos()
 	{
 		Session s = sf.openSession();
-		List<Cuenta> cuentas = s.createQuery("from Cuenta").list();
+		List<Cuenta> cuentas = s.createQuery("from CajaAhorro").list();
+		cuentas.addAll(s.createQuery("from CC").list());
 		s.close();
 		return cuentas;
 	}
