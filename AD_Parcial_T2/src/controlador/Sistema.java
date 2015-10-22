@@ -19,16 +19,16 @@ public class Sistema
 	
 	public static void main(String[] args)
 	{
-		ejercicioUno();
-		System.out.println();
-		
-		ejercicioDos();
-		System.out.println();
-		
-		ejercicioTres();
-		System.out.println();
-		//
 		// ejercicioUno();
+		// System.out.println();
+		//
+		// ejercicioDos();
+		// System.out.println();
+		//
+		// ejercicioTres();
+		// System.out.println();
+		
+		ejercicioCuatro();
 		System.out.println();
 	}
 	
@@ -98,6 +98,27 @@ public class Sistema
 					System.out.println(tupla[0].toString());
 				}
 			}
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	private static void ejercicioCuatro()
+	{
+		// Determinar el importe en materiales solamente de las reparaciones en un rango de fechas.
+		System.out.println("Ejercicio 4");
+		try
+		{
+			BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+			System.out.print("Ingrese la fecha de inicio (DD/MM/AAAA): ");
+			String fechaIni = br.readLine();
+			System.out.print("Ingrese la fecha de fin (DD/MM/AAAA): ");
+			String fechaFin = br.readLine();
+			
+			float importe = dao.getImpRepXFechas(parsearFecha(fechaIni), parsearFecha(fechaFin));
+			System.out.println("Importe total en materiales es: " + Float.toString(importe));
 		}
 		catch (IOException e)
 		{

@@ -86,4 +86,15 @@ public class TallerDAO
 		s.close();
 		return tuplas;
 	}
+	
+	public float getImpRepXFechas(Date fIni, Date fFin)
+	{
+		Session s = sf.openSession();
+		Query q = s.createQuery("select sum(m.precio*it.cantidad) from Reparacion r join r.items it join it.clave.material m where r.fecha between :fIni and :fFin and m.class = Repuesto");
+		q.setDate("fIni", fIni);
+		q.setDate("fFin", fFin);
+		float importe = Float.parseFloat(q.list().get(0).toString());
+		s.close();
+		return importe;
+	}
 }
