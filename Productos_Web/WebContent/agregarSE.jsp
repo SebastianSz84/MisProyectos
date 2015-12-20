@@ -11,7 +11,7 @@
 </head>
 <body>
 <form action="AltaSE" method="post" onsubmit="return validarCProd()">
-   	Materia Prima: <select name="mp">
+   	Materia Prima: <select name="mp" multiple="multiple">
 	<%for(MateriaPrima mp : Sistema.getInstancia().listarMPs()){%>
    		<option value="<%=mp.getCodigo()%>"><%=mp.getDescripcion()%></option>
 	<%}%>
@@ -21,14 +21,14 @@
    		<option value="<%=Integer.toString(u.getCodigo())%>"><%=u.getDescripcion()%></option>
 	<%}%>
 	</select><br>
-	<input id="costoProd" type="text"/><br>
+	<input id="costoProd" name="costoProd" type="text"/><br>
 	<input type="submit" value="Crear SE"><br>	
 </form>
 </body>
 </html>
 <script type="text/javascript">
 function validarCProd(){
-	var costo = document.getElementById("costoProd").value;
+	var costo = document.getElementsById("costoProd").value;
 	if(!costo){
 		alert("Ingrese un costo de producción.");
 		return false;

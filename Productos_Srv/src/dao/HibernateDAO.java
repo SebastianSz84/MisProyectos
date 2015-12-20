@@ -41,11 +41,25 @@ public class HibernateDAO {
 		return lista;
 	}
 
+	@SuppressWarnings("unchecked")
 	public List<Unidad> listarUNs() {
 		Session s = sf.openSession();
-		@SuppressWarnings("unchecked")
 		List<Unidad> lista = s.createQuery("from Unidad").list();
 		s.close();
 		return lista;
+	}
+
+	public Unidad leerUN(int codUn) {
+		Session s = sf.openSession();
+		Unidad d = (Unidad) s.createQuery("from Unidad where codUnidad = :codUn ").setParameter("codUn", codUn).uniqueResult();
+		s.close();
+		return d;
+	}
+
+	public MateriaPrima leerMP(String codMP) {
+		Session s = sf.openSession();
+		MateriaPrima mp = (MateriaPrima) s.createQuery("from MateriaPrima where codMaterial = :codMP ").setParameter("codMP", codMP).uniqueResult();
+		s.close();
+		return mp;
 	}
 }
