@@ -6,8 +6,10 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import entities.MateriaPrima;
+import entities.SemiElaborado;
 import entities.Unidad;
 
 public class HibernateDAO {
@@ -61,5 +63,12 @@ public class HibernateDAO {
 		MateriaPrima mp = (MateriaPrima) s.createQuery("from MateriaPrima where codMaterial = :codMP ").setParameter("codMP", codMP).uniqueResult();
 		s.close();
 		return mp;
+	}
+
+	public void grabarSE(SemiElaborado se) {
+		Session s = sf.openSession();
+		Transaction tx = s.beginTransaction();
+		s.saveOrUpdate(se);
+		tx.commit();
 	}
 }

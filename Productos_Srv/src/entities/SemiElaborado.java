@@ -2,6 +2,7 @@ package entities;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
@@ -15,7 +16,10 @@ public class SemiElaborado extends Producto {
 	@ManyToMany
 	@JoinTable(name = "materialSemi", joinColumns = { @JoinColumn(name = "codProducto") }, inverseJoinColumns = @JoinColumn(name = "codMaterial"))
 	private List<MateriaPrima> meteriales;
+
+	@Column(name = "costo")
 	private float costoProduccion;
+
 	@ManyToOne
 	@JoinColumn(name = "almacenadoComo")
 	private Unidad unidadAlmacenamiento;

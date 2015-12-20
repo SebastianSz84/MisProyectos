@@ -52,6 +52,7 @@ public class AltaSE extends HttpServlet {
 				listaMPs.add(HibernateDAO.getInstancia().leerMP(s));
 			}
 			se.setMeteriales(listaMPs);
+			se.setNumero(999);
 			HibernateDAO.getInstancia().grabarSE(se);
 		}
 	}
