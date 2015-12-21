@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -13,7 +14,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "semiElaborados")
 public class SemiElaborado extends Producto {
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "materialSemi", joinColumns = { @JoinColumn(name = "codProducto") }, inverseJoinColumns = @JoinColumn(name = "codMaterial"))
 	private List<MateriaPrima> meteriales;
 

@@ -4,6 +4,7 @@ import java.util.List;
 
 import dao.HibernateDAO;
 import entities.MateriaPrima;
+import entities.SemiElaborado;
 import entities.Unidad;
 
 public class Sistema {
@@ -26,5 +27,13 @@ public class Sistema {
 
 	public List<Unidad> listarUNs() {
 		return HibernateDAO.getInstancia().listarUNs();
+	}
+
+	public List<SemiElaborado> listarSE() {
+		return HibernateDAO.getInstancia().listarSE();
+	}
+
+	public SemiElaborado listarMPporSE(int codSE) {
+		return HibernateDAO.getInstancia().leerSE(codSE);
 	}
 }

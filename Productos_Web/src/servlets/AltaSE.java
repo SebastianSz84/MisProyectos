@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,14 +47,19 @@ public class AltaSE extends HttpServlet {
 		if (st.length != 0) {
 			SemiElaborado se = new SemiElaborado();
 			se.setCostoProduccion(Float.parseFloat(request.getParameter("costoProd")));
+			se.setDescripcion(request.getParameter("desc"));
 			se.setUnidadAlmacenamiento(HibernateDAO.getInstancia().leerUN(Integer.parseInt(request.getParameter("unidad"))));
 			List<MateriaPrima> listaMPs = new ArrayList<>();
 			for (String s : st) {
 				listaMPs.add(HibernateDAO.getInstancia().leerMP(s));
 			}
 			se.setMeteriales(listaMPs);
-			se.setNumero(999);
 			HibernateDAO.getInstancia().grabarSE(se);
+			PrintWriter pw = response.getWriter();
+			pw.println("<html>");
+			pw.println("Se ha creado satisfactoriamente el Semielaborado " + Integer.toString(se.getNumero()) + "<br>");
+			pw.println("<a href=\"index.html\">Volver</a>");
+			pw.println("</html>");
 		}
 	}
 }

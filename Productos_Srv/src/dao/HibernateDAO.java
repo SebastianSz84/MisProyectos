@@ -65,10 +65,25 @@ public class HibernateDAO {
 		return mp;
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<SemiElaborado> listarSE() {
+		Session s = sf.openSession();
+		List<SemiElaborado> lista = s.createQuery("from SemiElaborado").list();
+		s.close();
+		return lista;
+	}
+
 	public void grabarSE(SemiElaborado se) {
 		Session s = sf.openSession();
 		Transaction tx = s.beginTransaction();
 		s.saveOrUpdate(se);
 		tx.commit();
+	}
+
+	public SemiElaborado leerSE(int codSE) {
+		Session s = sf.openSession();
+		SemiElaborado se = (SemiElaborado) s.createQuery("from SemiElaborado where codProducto = :cod").setParameter("cod", codSE).uniqueResult();
+		s.close();
+		return se;
 	}
 }

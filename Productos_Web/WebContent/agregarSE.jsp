@@ -10,8 +10,9 @@
 <title>Agregar un semielaborado</title>
 </head>
 <body>
-<form action="AltaSE" method="post" onsubmit="return validarCProd()">
-   	Materia Prima: <select name="mp" multiple="multiple">
+<script type="text/javascript" src="scripts.js"></script>
+<form action="AltaSE" method="post" onsubmit="return validarForm()">
+   	Materia Prima: <select id="mp" name="mp" multiple="multiple">
 	<%for(MateriaPrima mp : Sistema.getInstancia().listarMPs()){%>
    		<option value="<%=mp.getCodigo()%>"><%=mp.getDescripcion()%></option>
 	<%}%>
@@ -21,23 +22,10 @@
    		<option value="<%=Integer.toString(u.getCodigo())%>"><%=u.getDescripcion()%></option>
 	<%}%>
 	</select><br>
-	<input id="costoProd" name="costoProd" type="text"/><br>
+	Costo de producción: <input id="costoProd" name="costoProd" type="text"/><br>
+	Descripción: <input id="desc" name="desc" type="text"/><br>
 	<input type="submit" value="Crear SE"><br>	
 </form>
+<a href="index.html">Volver</a>
 </body>
 </html>
-<script type="text/javascript">
-function validarCProd(){
-	var costo = document.getElementsById("costoProd").value;
-	if(!costo){
-		alert("Ingrese un costo de producción.");
-		return false;
-	}else{
-		if(isNaN(parseFloat(costo))){
-			alert("Ingrese un costo de producción numérico.");
-			costo="";
-			return false;
-		}
-	}
-}
-</script>
