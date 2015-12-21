@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import beans.UnidadDTO;
+
 @Entity
 @Table(name = "unidades")
 public class Unidad {
@@ -29,5 +31,12 @@ public class Unidad {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public UnidadDTO getDTO() {
+		UnidadDTO unDTO = new UnidadDTO();
+		unDTO.setCodigo(codigo);
+		unDTO.setDescripcion(descripcion);
+		return unDTO;
 	}
 }

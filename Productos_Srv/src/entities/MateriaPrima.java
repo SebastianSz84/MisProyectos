@@ -7,6 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import beans.MateriaPrimaDTO;
+
 @Entity
 @Table(name = "materiales")
 public class MateriaPrima {
@@ -55,5 +57,14 @@ public class MateriaPrima {
 
 	public void setUnidadUso(Unidad unidadUso) {
 		this.unidadUso = unidadUso;
+	}
+
+	public MateriaPrimaDTO getDTO() {
+		MateriaPrimaDTO mpDTO = new MateriaPrimaDTO();
+		mpDTO.setCodigo(codigo);
+		mpDTO.setDescripcion(descripcion);
+		mpDTO.setUnidadCompra(unidadCompra.getDTO());
+		mpDTO.setUnidadUso(unidadUso.getDTO());
+		return mpDTO;
 	}
 }

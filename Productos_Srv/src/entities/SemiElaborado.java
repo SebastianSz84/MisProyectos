@@ -11,6 +11,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import beans.SemiElaboradoDTO;
+
 @Entity
 @Table(name = "semiElaborados")
 public class SemiElaborado extends Producto {
@@ -47,5 +49,13 @@ public class SemiElaborado extends Producto {
 
 	public void setUnidadAlmacenamiento(Unidad unidadAlmacenamiento) {
 		this.unidadAlmacenamiento = unidadAlmacenamiento;
+	}
+
+	public SemiElaboradoDTO getDTO() {
+		SemiElaboradoDTO seDTO = new SemiElaboradoDTO();
+		seDTO.setCostoProduccion(costoProduccion);
+		seDTO.setDescripcion(this.getDescripcion());
+		seDTO.setNumero(this.getNumero());
+		return seDTO;
 	}
 }
