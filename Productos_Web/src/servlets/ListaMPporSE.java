@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controlador.Sistema;
-import entities.MateriaPrima;
-import entities.SemiElaborado;
+import beans.MateriaPrimaDTO;
+import beans.SemiElaboradoDTO;
+import controlador.BusinessDelegate;
 
 /**
  * Servlet implementation class ListaMPporSE
@@ -33,10 +33,10 @@ public class ListaMPporSE extends HttpServlet {
 	 *      response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SemiElaborado se = Sistema.getInstancia().listarMPporSE(Integer.parseInt(request.getParameter("semiElab")));
+		SemiElaboradoDTO seDTO = BusinessDelegate.getInstancia().listarMPporSE(Integer.parseInt(request.getParameter("semiElab")));
 
 		PrintWriter pw = response.getWriter();
-		if (se == null) {
+		if (seDTO == null) {
 			pw.println("<html>Se han encontrado datos.<br><a href=\"index.html\">Volver</a></html>");
 		} else {
 			pw.println("<html><body><table border=\"1\"");
@@ -44,7 +44,7 @@ public class ListaMPporSE extends HttpServlet {
 			pw.println("<td>Código</td>");
 			pw.println("<td>Descripción</td>");
 			pw.println("</tr>");
-			for (MateriaPrima mp : se.getMeteriales()) {
+			for (MateriaPrimaDTO mp : seDTO.getMeteriales()) {
 				pw.println("<tr>");
 				pw.println("<td>" + mp.getCodigo() + "</td>");
 				pw.println("<td>" + mp.getDescripcion() + "</td>");

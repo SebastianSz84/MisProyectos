@@ -18,4 +18,6 @@ public interface InterfazProductos extends Remote {
 	public List<UnidadDTO> listarUNs() throws RemoteException;
 
 	public List<SemiElaboradoDTO> listarSE() throws RemoteException;
+
+	public SemiElaboradoDTO grabarSE(SemiElaboradoDTO se) throws RemoteException;
 }

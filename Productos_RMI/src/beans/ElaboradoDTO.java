@@ -1,8 +1,13 @@
 package beans;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class ElaboradoDTO extends ProductoDTO {
+public class ElaboradoDTO extends ProductoDTO implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private List<SemiElaboradoDTO> componentes;
 	private float precioVenta;
 	private int porcentajeGanancia;
@@ -38,5 +43,9 @@ public class ElaboradoDTO extends ProductoDTO {
 
 	public void setUnidad(UnidadDTO unidad) {
 		this.unidad = unidad;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 }

@@ -1,6 +1,12 @@
 package beans;
 
-public abstract class ProductoDTO {
+import java.io.Serializable;
+
+public abstract class ProductoDTO implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int numero;
 	private String descripcion;
 
@@ -18,5 +24,9 @@ public abstract class ProductoDTO {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 }

@@ -1,6 +1,12 @@
 package beans;
 
-public class UnidadDTO {
+import java.io.Serializable;
+
+public class UnidadDTO implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int codigo;
 	private String descripcion;
 
@@ -18,5 +24,9 @@ public class UnidadDTO {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 }

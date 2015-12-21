@@ -4,16 +4,12 @@ import interfaz.InterfazProductos;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
-import java.util.ArrayList;
 import java.util.List;
 
 import beans.MateriaPrimaDTO;
 import beans.SemiElaboradoDTO;
 import beans.UnidadDTO;
 import controlador.Sistema;
-import entities.MateriaPrima;
-import entities.SemiElaborado;
-import entities.Unidad;
 
 public class RecursosRMI extends UnicastRemoteObject implements InterfazProductos {
 
@@ -22,17 +18,13 @@ public class RecursosRMI extends UnicastRemoteObject implements InterfazProducto
 	 */
 	private static final long serialVersionUID = 1L;
 
-	protected RecursosRMI() throws RemoteException {
+	public RecursosRMI() throws RemoteException {
 		super();
 	}
 
 	@Override
 	public List<MateriaPrimaDTO> listarMPs() throws RemoteException {
-		List<MateriaPrimaDTO> listaMPDTO = new ArrayList<MateriaPrimaDTO>();
-		for (MateriaPrima mp : Sistema.getInstancia().listarMPs()) {
-			listaMPDTO.add(mp.getDTO());
-		}
-		return listaMPDTO;
+		return Sistema.getInstancia().listarMPs();
 	}
 
 	@Override
@@ -42,19 +34,16 @@ public class RecursosRMI extends UnicastRemoteObject implements InterfazProducto
 
 	@Override
 	public List<UnidadDTO> listarUNs() throws RemoteException {
-		List<UnidadDTO> lista = new ArrayList<>();
-		for (Unidad u : Sistema.getInstancia().listarUNs()) {
-			lista.add(u.getDTO());
-		}
-		return lista;
+		return Sistema.getInstancia().listarUNs();
 	}
 
 	@Override
 	public List<SemiElaboradoDTO> listarSE() throws RemoteException {
-		List<SemiElaboradoDTO> lista = new ArrayList<>();
-		for (SemiElaborado se : Sistema.getInstancia().listarSE()) {
-			lista.add(se.getDTO());
-		}
-		return lista;
+		return Sistema.getInstancia().listarSE();
+	}
+
+	@Override
+	public SemiElaboradoDTO grabarSE(SemiElaboradoDTO se) {
+		return Sistema.getInstancia().grabarSE(se);
 	}
 }

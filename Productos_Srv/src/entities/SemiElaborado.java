@@ -1,5 +1,6 @@
 package entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,6 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import beans.MateriaPrimaDTO;
 import beans.SemiElaboradoDTO;
 
 @Entity
@@ -56,6 +58,11 @@ public class SemiElaborado extends Producto {
 		seDTO.setCostoProduccion(costoProduccion);
 		seDTO.setDescripcion(this.getDescripcion());
 		seDTO.setNumero(this.getNumero());
+		List<MateriaPrimaDTO> lista = new ArrayList<>();
+		for (MateriaPrima mp : this.meteriales) {
+			lista.add(mp.getDTO());
+		}
+		seDTO.setMeteriales(lista);
 		return seDTO;
 	}
 }

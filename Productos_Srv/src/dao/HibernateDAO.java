@@ -73,11 +73,12 @@ public class HibernateDAO {
 		return lista;
 	}
 
-	public void grabarSE(SemiElaborado se) {
+	public SemiElaborado grabarSE(SemiElaborado se) {
 		Session s = sf.openSession();
 		Transaction tx = s.beginTransaction();
 		s.saveOrUpdate(se);
 		tx.commit();
+		return se;
 	}
 
 	public SemiElaborado leerSE(int codSE) {

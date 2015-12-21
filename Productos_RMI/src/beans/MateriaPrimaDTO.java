@@ -1,6 +1,12 @@
 package beans;
 
-public class MateriaPrimaDTO {
+import java.io.Serializable;
+
+public class MateriaPrimaDTO implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String codigo;
 	private String descripcion;
 	private UnidadDTO unidadCompra;
@@ -38,4 +44,7 @@ public class MateriaPrimaDTO {
 		this.unidadUso = unidadUso;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }

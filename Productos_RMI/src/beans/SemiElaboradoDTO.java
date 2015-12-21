@@ -1,8 +1,13 @@
 package beans;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class SemiElaboradoDTO extends ProductoDTO {
+public class SemiElaboradoDTO extends ProductoDTO implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private List<MateriaPrimaDTO> meteriales;
 	private float costoProduccion;
 	private UnidadDTO unidadAlmacenamiento;
@@ -31,4 +36,7 @@ public class SemiElaboradoDTO extends ProductoDTO {
 		this.unidadAlmacenamiento = unidadAlmacenamiento;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
 }

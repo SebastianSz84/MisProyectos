@@ -11,9 +11,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dao.HibernateDAO;
-import entities.MateriaPrima;
-import entities.SemiElaborado;
+import beans.MateriaPrimaDTO;
+import beans.SemiElaboradoDTO;
+import beans.UnidadDTO;
+import controlador.BusinessDelegate;
 
 /**
  * Servlet implementation class AltaSE
@@ -45,16 +46,21 @@ public class AltaSE extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String[] st = request.getParameterValues("mp");
 		if (st.length != 0) {
-			SemiElaborado se = new SemiElaborado();
+			SemiElaboradoDTO se = new SemiElaboradoDTO();
 			se.setCostoProduccion(Float.parseFloat(request.getParameter("costoProd")));
 			se.setDescripcion(request.getParameter("desc"));
-			se.setUnidadAlmacenamiento(HibernateDAO.getInstancia().leerUN(Integer.parseInt(request.getParameter("unidad"))));
-			List<MateriaPrima> listaMPs = new ArrayList<>();
+			UnidadDTO unAlm = new UnidadDTO();
+			unAlm.setCodigo(Integer.parseInt(request.getParameter("unidad")));
+			se.setUnidadAlmacenamiento(unAlm);
+			List<MateriaPrimaDTO> listaMPs = new ArrayList<>();
 			for (String s : st) {
-				listaMPs.add(HibernateDAO.getInstancia().leerMP(s));
+				MateriaPrimaDTO mpDTO = new MateriaPrimaDTO();
+				mpDTO.setCodigo(s);
+				listaMPs.add(mpDTO);
 			}
 			se.setMeteriales(listaMPs);
-			HibernateDAO.getInstancia().grabarSE(se);
+			BusinessDelegate.getInstancia().grabarSE(se);
+
 			PrintWriter pw = response.getWriter();
 			pw.println("<html>");
 			pw.println("Se ha creado satisfactoriamente el Semielaborado " + Integer.toString(se.getNumero()) + "<br>");
